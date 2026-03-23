@@ -1,6 +1,6 @@
 # Crew Report Privacy Policy
 
-Last updated: March 18, 2026
+Last updated: March 22, 2026
 
 Crew Report is a construction crew timekeeping app for iPhone. This Privacy Policy explains what information the app handles, how that information is used, and what choices users have.
 
@@ -9,14 +9,17 @@ Crew Report is a construction crew timekeeping app for iPhone. This Privacy Poli
 Crew Report may store the following information that the user enters into the app:
 
 - Crew member names
-- Supervisor names
-- Crew member and supervisor phone numbers
-- Crew member and supervisor email addresses
+- Supervisor, reviewer, payroll-approver, and crew-lead names
+- Crew member, supervisor, reviewer, and approver phone numbers
+- Crew member, supervisor, reviewer, and approver email addresses
 - Company information entered by the user
-- Project and jobsite information
-- Time entries, live shift information, payroll details, hourly rates, banked hours, gross pay totals, and related calculations
+- Project, jobsite, project-template, and archived-project information
+- Time entries, live shift information, break minutes, saved shift timing, payroll details, hourly rates, banked hours, gross pay totals, bank-ledger review records, and related calculations
+- Approval workflow configuration, reviewer profiles, stage defaults, approver names, review notes, reopen history, review status records, audit-trail metadata, and delivery receipt history
+- Crew Portal access-code settings, access-code hash and salt values, expiration dates, shared-device lockout state, weekly confirmation records, portal clock-in requests, and related supervisor approval or denial history
+- Planned vacation ranges, vacation request statuses, delivery-format preferences, queued reminder details, and related crew self-service updates entered in the app
 - Union or trade classification information
-- Notes, reviews, export settings, reminder preferences, sync diagnostics, and other app content created by the user
+- Notes, report visibility settings, delivery preferences, reminder preferences, sync diagnostics, merge summaries, conflict-review history, manual conflict-resolution choices, and other app content created by the user
 
 ## How Information Is Used
 
@@ -24,31 +27,51 @@ Crew Report uses this information only to provide the app's features, including:
 
 - Tracking crew hours and payroll
 - Tracking live shifts and break times
+- Managing project-scoped approval workflows and review reminders
+- Supporting Crew Portal features, including personal history, delivery preferences, vacation requests, weekly confirmations, direct clock-out actions, shared-device access protection, and optional supervisor-reviewed clock-in requests
 - Generating reports and exports
-- Sending or preparing reports through Apple's system share, message, and mail composers
+- Sending or preparing reports through Apple's system share, message, and mail composers, document export tools, and clipboard fallback when direct sending is unavailable on the device
 - Restoring saved app data and local snapshots
-- Supporting optional reminders, widgets, and contact import
+- Supporting optional reminders, widgets, app lock, and contact import
 - Syncing app data through the user's private iCloud account when available
 
 Crew Report does not use this information for advertising, profiling, or third-party analytics.
 
 ## Contacts Access
 
-Crew Report may request access to Contacts only if the user chooses to import a crew member or supervisor from the device address book.
+Crew Report may request access to Contacts only if the user chooses to import a crew member or a reviewer or supervisor profile from the device address book.
 
-Contacts access is optional. If permission is denied, the user can still enter names and phone numbers manually.
+If the user selects a contact, Crew Report may read the selected contact's name, phone number, and email address so those values can be copied into the app.
+
+Contacts access is optional. If permission is denied, the user can still enter names and contact information manually.
+
+## Biometric And Device Authentication
+
+Crew Report can optionally require Face ID, Touch ID, or the device passcode when reopening the app.
+
+This authentication is handled by Apple's LocalAuthentication framework. Crew Report does not receive, collect, or store biometric templates or the device passcode. The app only receives the success or failure result needed to unlock the interface.
 
 ## Notifications
 
-Crew Report may request permission to send local notifications for daily time-entry reminders, running-shift reminders, and scheduled supervisor delivery reminders.
+Crew Report may request permission to send local notifications for daily time-entry reminders, running-shift reminders, approval-stage reminders, and scheduled supervisor delivery reminders.
 
 These are local notifications generated on the device. Crew Report does not use remote push notifications for this reminder feature.
 
+Some reminder notifications may include a deep link so opening the alert can return the user to the relevant project, review week, or send workflow inside the app.
+
 ## Local Storage
 
-App data is stored locally on the user's device. This may include crew, payroll, live shift, project, note, review, export, settings, sync, and diagnostics data entered into or generated by the app.
+App data is stored locally on the user's device. This may include crew, payroll, live shift, portal, vacation, project, template, note, review, export, settings, sync, delivery, and diagnostics data entered into or generated by the app.
 
-Crew Report may also keep a local snapshot and local backup copy of app data on the device to support recovery, migration, and restore flows.
+Crew Report may also keep a local snapshot and local backup copy of app data on the device to support recovery, migration, restore, merge review, and troubleshooting flows.
+
+The primary on-device store is written with iOS file-protection settings, including complete file protection when supported by the device and operating system.
+
+## Secure Credential And Lockout Storage
+
+Crew Portal access codes are not stored only as plain reusable codes. Crew Report stores hashed credential data and related security metadata used to validate access on the device.
+
+For shared-device Crew Portal protection, lockout state may also be stored in Apple's secure storage services on the device so failed-attempt limits and lockout timing can be enforced more safely.
 
 ## iCloud Sync and Backup
 
@@ -56,29 +79,35 @@ If the user is signed in to iCloud and iCloud is available on the device, Crew R
 
 This data is stored in the user's own iCloud account and is used so the user can keep Crew Report data available across their own devices and restore app state when needed.
 
+When local changes and iCloud changes need to be reconciled, Crew Report may store merge summaries, merge-history metadata, conflict-review history, and user-selected conflict-resolution choices on the device so the user can review how conflicts were resolved.
+
 Crew Report does not use a developer-hosted cloud database for user payroll data.
 
 ## Widgets and App Group Storage
 
 Crew Report includes an optional iPhone widget.
 
-To support that widget, the app writes a limited project snapshot into the app group's shared container on the user's device so the widget extension can display current project totals, logging status, reminder status, and running-shift summary information.
+To support that widget, the app writes a limited project snapshot into the app group's shared container on the user's device so the widget extension can display current project totals, logging status, reminder status, review-stage information, running-shift summary information, and the selected or pinned project context for that widget instance.
 
 This widget snapshot stays on the user's device and is not used for advertising or third-party analytics.
 
 ## Diagnostics
 
-Crew Report stores on-device diagnostics about sync, export, backup, restore, and report-delivery events so users can review recent app activity and troubleshoot issues.
+Crew Report stores on-device diagnostics about sync, merge history, export, backup, restore, report-delivery events, reminder scheduling, and related approval or portal workflow activity so users can review recent app activity and troubleshoot issues.
 
 These diagnostics are stored locally, may be included in exported local snapshots, and are only shared externally if the user explicitly copies or exports them.
 
-## SMS and Sharing
+## SMS, Mail, Files, and Sharing
 
-Crew Report can prepare reports for sharing through Apple's system features, such as the system message composer, mail composer, share sheets, and file export options.
+Crew Report can prepare reports, backups, snapshots, diagnostics, and ledger or history exports for sharing through Apple's system features, such as the system message composer, mail composer, share sheets, clipboard fallback, and file export options.
 
-When the user chooses to share a report, the selected content is handled through Apple's system sharing tools. Crew Report does not operate a developer-hosted messaging service for these exports.
+When the user chooses to share or export content, the selected data is handled through Apple's system sharing tools. Crew Report does not operate a developer-hosted messaging service for these exports.
+
+If the user exports a backup, snapshot, or report to Files, iCloud Drive, Mail, Messages, or another destination selected in the system share flow, that transfer is initiated by the user. Any handling after export is governed by the destination service or app the user chooses.
 
 If the device cannot send a message or email directly, Crew Report may copy prepared report content to the clipboard so the user can paste it into another app.
+
+Crew Report does not silently send SMS messages or emails in the background. Scheduled supervisor delivery reminders reopen the app into a prepared send flow so the user can complete the delivery themselves.
 
 ## Tracking, Analytics, and Advertising
 
@@ -95,7 +124,7 @@ Crew Report does not sell personal information.
 
 Crew Report does not share user data with third parties for advertising or marketing purposes.
 
-Information may be processed by Apple services only when required for app functionality selected by the user, such as iCloud storage, local device permissions, or system sharing flows.
+Information may be processed by Apple services only when required for app functionality selected by the user, such as iCloud storage, local device permissions, device authentication, or system sharing flows.
 
 ## User Choices
 
@@ -103,8 +132,11 @@ Users can:
 
 - Deny Contacts permission and enter information manually
 - Deny notification permission
+- Disable the app lock feature in Settings
 - Disable iCloud through Apple device settings
 - Cancel scheduled reminders inside the app
+- Remove or rotate Crew Portal access credentials and adjust shared-device lockout settings inside the app
+- Change or revoke Crew Portal access by removing portal access codes, expiring them, or adjusting lockout settings inside the app
 - Delete local app data by removing the app or replacing data with a restored backup
 - Control iCloud availability through their Apple device and iCloud settings
 - Choose whether to export backups, local snapshots, reports, or diagnostics
